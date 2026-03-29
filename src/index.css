@@ -22,6 +22,13 @@
 	--color-orange-400: #ff7e35;
 	--color-orange-50: #fff5ed;
 	--color-red-500: #ee5454;
+
+	--color-html: var(--color-orange-50);
+	--color-css: var(--color-green-100);
+	--color-javascript: var(--color-blue-50);
+	--color-accessibility: var(--color-purple-100);
+
+	--color-shadow: #8fa0c1;
 }
 
 @utility text-preset-1 {
@@ -128,4 +135,47 @@ input,
 select,
 textarea {
 	font-family: 'Rubik', sans-serif;
+}
+
+.custom-shadow {
+	box-shadow: 0px 16px 40px 0 rgba(143, 160, 193, 0.14);
+}
+
+.background-light,
+.background-dark {
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: 100% 100%;
+}
+
+.background-light {
+	background-image: url('./assets/pattern-background-desktop-light.svg');
+}
+
+@media (max-width: 1023px) {
+	.background-light {
+		background-image: url('./assets/pattern-background-tablet-light.svg');
+	}
+}
+
+@media (max-width: 767px) {
+	.background-light {
+		background-image: url('./assets/pattern-background-mobile-light.svg');
+	}
+}
+
+.background-dark {
+	background-image: url('./assets/pattern-background-desktop-dark.svg');
+}
+
+@media (max-width: 1023px) {
+	.background-dark {
+		background-image: url('./assets/pattern-background-tablet-dark.svg');
+	}
+}
+
+@media (max-width: 767px) {
+	.background-dark {
+		background-image: url('./assets/pattern-background-mobile-dark.svg');
+	}
 }

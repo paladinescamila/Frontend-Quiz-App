@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {QUIZ_BY_ID} from '../constants/quizes';
+import {QUIZES_BY_ID} from '../constants/quizes';
 import {useAppDispatch, useAppSelector} from './hooks';
 import {setPage} from './pageSlice';
 import {startQuiz, resetQuiz, submitAnswer, nextQuestion} from './quizSlice';
@@ -21,7 +21,7 @@ export const useHandleState = () => {
 	);
 
 	const handleStartQuiz = (quizID: QuizID) => {
-		dispatch(startQuiz(QUIZ_BY_ID[quizID]));
+		dispatch(startQuiz(QUIZES_BY_ID[quizID]));
 		dispatch(setPage('quiz'));
 	};
 
