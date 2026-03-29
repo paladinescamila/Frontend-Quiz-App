@@ -1,11 +1,10 @@
-interface ResultsPageProps {
-	title: string;
-	score: number;
-	totalQuestions: number;
-	onPlayAgain: () => void;
-}
+import {useHandleState} from '../redux/useHandleState';
 
-export function ResultsPage({title, score, totalQuestions, onPlayAgain}: ResultsPageProps) {
+export function ResultsPage() {
+	const {quizState, handlePlayAgain} = useHandleState();
+
+	if (!quizState.currentQuiz) return null;
+
 	return (
 		<main>
 			<section aria-label='Quiz results'>
@@ -16,16 +15,17 @@ export function ResultsPage({title, score, totalQuestions, onPlayAgain}: Results
 
 				<article aria-label='Final score'>
 					<header>
-						<h2>{title}</h2>
+						<h2>{quizState.currentQuiz.title}</h2>
 					</header>
 					<div aria-live='polite'>
 						<p>
-							<strong>{score}</strong> out of {totalQuestions}
+							<strong>{quizState.score}</strong> out of{' '}
+							{quizState.currentQuiz.questions.length}
 						</p>
 					</div>
 				</article>
 
-				<button onClick={onPlayAgain}>Play Again</button>
+				<button onClick={handlePlayAgain}>Play Again</button>
 			</section>
 		</main>
 	);

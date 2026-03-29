@@ -1,4 +1,8 @@
-export function HomePage({startQuiz}: {startQuiz: (quizID: QuizID) => void}) {
+import {useHandleState} from '../redux/useHandleState';
+
+export function HomePage() {
+	const {handleStartQuiz} = useHandleState();
+
 	return (
 		<main>
 			<header>
@@ -13,7 +17,7 @@ export function HomePage({startQuiz}: {startQuiz: (quizID: QuizID) => void}) {
 							<a
 								onClick={(e) => {
 									e.preventDefault();
-									startQuiz('html');
+									handleStartQuiz('html');
 								}}>
 								<h2>HTML</h2>
 							</a>
@@ -24,7 +28,7 @@ export function HomePage({startQuiz}: {startQuiz: (quizID: QuizID) => void}) {
 							<a
 								onClick={(e) => {
 									e.preventDefault();
-									startQuiz('css');
+									handleStartQuiz('css');
 								}}>
 								<h2>CSS</h2>
 							</a>
@@ -35,7 +39,7 @@ export function HomePage({startQuiz}: {startQuiz: (quizID: QuizID) => void}) {
 							<a
 								onClick={(e) => {
 									e.preventDefault();
-									startQuiz('javascript');
+									handleStartQuiz('javascript');
 								}}>
 								<h2>Javascript</h2>
 							</a>
@@ -46,7 +50,7 @@ export function HomePage({startQuiz}: {startQuiz: (quizID: QuizID) => void}) {
 							<a
 								onClick={(e) => {
 									e.preventDefault();
-									startQuiz('accessibility');
+									handleStartQuiz('accessibility');
 								}}>
 								<h2>Accessibility</h2>
 							</a>

@@ -5,14 +5,14 @@ interface QuizState {
 	currentQuiz: Quiz | null;
 	currentQuestionIndex: number;
 	score: number;
-	userAnswers: string[];
+	answerState: AnswerState;
 }
 
 const initialState: QuizState = {
 	currentQuiz: null,
 	currentQuestionIndex: 0,
 	score: 0,
-	userAnswers: [],
+	answerState: 'none',
 };
 
 const quizSlice = createSlice({
@@ -23,23 +23,28 @@ const quizSlice = createSlice({
 			state.currentQuiz = action.payload;
 			state.currentQuestionIndex = 0;
 			state.score = 0;
-			state.userAnswers = [];
+			state.answerState = 'none';
 		},
-		submitAnswer: (state, action: PayloadAction<{answer: string; isCorrect: boolean}>) => {
-			state.userAnswers.push(action.payload.answer);
-
+		submitAnswer: (
+			state,
+			action: PayloadAction<{answer: string; isCorrect: boolean; isSelected: boolean}>,
+		) => {
 			if (action.payload.isCorrect) {
 				state.score += 1;
+				state.answerState = 'correct';
+			} else {
+				state.answerState = 'incorrect';
 			}
 		},
 		nextQuestion: (state) => {
 			state.currentQuestionIndex += 1;
+			state.answerState = 'none';
 		},
 		resetQuiz: (state) => {
 			state.currentQuiz = null;
 			state.currentQuestionIndex = 0;
 			state.score = 0;
-			state.userAnswers = [];
+			state.answerState = 'none';
 		},
 	},
 });

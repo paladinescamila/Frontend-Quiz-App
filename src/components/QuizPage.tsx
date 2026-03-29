@@ -1,38 +1,29 @@
 import {useRef, useEffect} from 'react';
-import {useAppDispatch} from '../redux/hooks';
-import {submitAnswer, nextQuestion} from '../redux/quizSlice';
-import {setPage} from '../redux/pageSlice';
+import {useHandleState} from '../redux/useHandleState';
 
-interface QuizPageProps {
-	title: string;
-	currentQuestionIndex: number;
-	totalQuestions: number;
-	question: Question;
-}
+export function QuizPage() {
+	// State management
+	const {
+		quizState: {currentQuiz, currentQuestionIndex, answerState},
+		question,
+		totalQuestions,
+		handleSubmitAnswer,
+		handleNextQuestion,
+	} = useHandleState();
 
-export function QuizPage({title, currentQuestionIndex, totalQuestions, question}: QuizPageProps) {
-	const dispatch = useAppDispatch();
+	// Reset form when question changes
 	const formRef = useRef<HTMLFormElement>(null);
 
 	useEffect(() => {
 		formRef.current?.reset();
 	}, [currentQuestionIndex]);
 
-	const handleSubmitAnswer = (answer: string) => {
-		const isCorrect = answer === question.answer;
-		dispatch(submitAnswer({answer, isCorrect}));
-
-		if (currentQuestionIndex < totalQuestions - 1) {
-			dispatch(nextQuestion());
-		} else {
-			dispatch(setPage('results'));
-		}
-	};
+	if (!question) return null;
 
 	return (
 		<main>
 			<header>
-				<h1>{title}</h1>
+				<h1>{currentQuiz?.title}</h1>
 				<p>
 					Question {currentQuestionIndex + 1} of {totalQuestions}
 				</p>
@@ -48,7 +39,8 @@ export function QuizPage({title, currentQuestionIndex, totalQuestions, question}
 						const formData = new FormData(e.currentTarget);
 						const answer = formData.get('answer');
 
-						if (answer) handleSubmitAnswer(answer as string);
+						if (answerState === 'none') handleSubmitAnswer(answer as string);
+						else if (answerState !== 'unanswered') handleNextQuestion();
 					}}>
 					<fieldset>
 						<legend>Select an answer:</legend>
@@ -69,7 +61,9 @@ export function QuizPage({title, currentQuestionIndex, totalQuestions, question}
 						</ul>
 					</fieldset>
 
-					<button type='submit'>Submit Answer</button>
+					<button type='submit'>
+						{answerState === 'none' ? 'Submit Answer' : 'Next Question'}
+					</button>
 				</form>
 			</section>
 		</main>
