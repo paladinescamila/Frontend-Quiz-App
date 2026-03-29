@@ -1,10 +1,11 @@
 import HTMLIcon from '../assets/icon-html.svg';
 import CSSIcon from '../assets/icon-css.svg';
-import JavaScriptIcon from '../assets/icon-javascript.svg';
+import JavaScriptIcon from '../assets/icon-js.svg';
 import AccessibilityIcon from '../assets/icon-accessibility.svg';
 
 export const QUIZES: Quiz[] = [
 	{
+		id: 'html',
 		title: 'HTML',
 		icon: HTMLIcon,
 		questions: [
@@ -87,6 +88,7 @@ export const QUIZES: Quiz[] = [
 		],
 	},
 	{
+		id: 'css',
 		title: 'CSS',
 		icon: CSSIcon,
 		questions: [
@@ -163,6 +165,7 @@ export const QUIZES: Quiz[] = [
 		],
 	},
 	{
+		id: 'javascript',
 		title: 'JavaScript',
 		icon: JavaScriptIcon,
 		questions: [
@@ -250,6 +253,7 @@ export const QUIZES: Quiz[] = [
 		],
 	},
 	{
+		id: 'accessibility',
 		title: 'Accessibility',
 		icon: AccessibilityIcon,
 		questions: [
@@ -341,3 +345,11 @@ export const QUIZES: Quiz[] = [
 		],
 	},
 ];
+
+export const QUIZ_BY_ID: Record<QuizID, Quiz> = QUIZES.reduce(
+	(acc, quiz) => {
+		acc[quiz.id] = quiz;
+		return acc;
+	},
+	{} as Record<QuizID, Quiz>,
+);
