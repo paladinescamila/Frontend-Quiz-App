@@ -1,22 +1,12 @@
-import {useMemo} from 'react';
 import {useHandleState} from '../redux/useHandleState';
 import {QUIZES_BY_SUBJECT, SUBJECTS} from '../constants/quizes';
 import Content from './Content';
 import Card from './Card';
 import CardList from './CardList';
+import SubjectIcon from './SubjectIcon';
 
 export function HomePage() {
 	const {handleStartQuiz} = useHandleState();
-
-	const bgBySubject: Record<Subject, string> = useMemo(
-		() => ({
-			html: 'bg-html',
-			css: 'bg-css',
-			javascript: 'bg-javascript',
-			accessibility: 'bg-accessibility',
-		}),
-		[],
-	);
 
 	return (
 		<Content>
@@ -40,9 +30,8 @@ export function HomePage() {
 						<li>
 							<Card
 								text={QUIZES_BY_SUBJECT[subject].title}
-								icon={QUIZES_BY_SUBJECT[subject].icon}
-								iconBackground={bgBySubject[subject]}
 								onClick={() => handleStartQuiz(subject)}
+								leftComponent={<SubjectIcon subject={subject} />}
 							/>
 						</li>
 					))}

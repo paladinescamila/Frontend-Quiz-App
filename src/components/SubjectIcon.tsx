@@ -14,5 +14,5 @@ export default function SubjectIcon({subject}: {subject: Subject}) {
 		[],
 	);
 
-	return <Icon icon={QUIZES_BY_SUBJECT[subject].icon} iconBackground={bgBySubject[subject]} />;
+	return <Icon icon={QUIZES_BY_SUBJECT[subject].icon} className={bgBySubject[subject]} />;
 }
