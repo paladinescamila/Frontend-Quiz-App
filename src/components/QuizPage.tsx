@@ -4,9 +4,9 @@ import {OPTIONS_LETTERS} from '../constants/options-letters';
 import Button from './Button';
 import AnswerCard from './AnswerCard';
 import CardList from './CardList';
+import {useMemo} from 'react';
 
 export function QuizPage() {
-	// State management
 	const {
 		quizState: {currentQuestionIndex, answer, currentQuiz},
 		question,
@@ -16,12 +16,15 @@ export function QuizPage() {
 		handleNextQuestion,
 	} = useHandleState();
 
-	// Reset form when question changes
-
 	const onClickSubmit = () => {
 		if (answer.state === 'none') handleSubmitAnswer();
 		else handleNextQuestion();
 	};
+
+	const progress = useMemo(
+		() => (currentQuestionIndex / Math.max(totalQuestions - 1, 1)) * 100,
+		[currentQuestionIndex, totalQuestions],
+	);
 
 	if (!question) return null;
 
@@ -37,7 +40,7 @@ export function QuizPage() {
 				<div className='h-4 bg-white dark:bg-blue-850 mt-4 lg:mt-auto rounded-full p-1'>
 					<div
 						className='h-2 bg-purple-600 rounded-full'
-						style={{width: `${(currentQuestionIndex / (totalQuestions - 1)) * 100}%`}}
+						style={{width: `${progress}%`}}
 					/>
 				</div>
 			</section>

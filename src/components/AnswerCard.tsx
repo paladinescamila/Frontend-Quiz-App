@@ -50,7 +50,7 @@ export default function AnswerCard({
 				) : mode === 'incorrect' && isSelected ? (
 					<img src={ErrorIcon} className='w-10 h-10' alt='Incorrect answer' />
 				) : (
-					<div className='w-10 h-10' />
+					<span className='w-10 h-10' />
 				)
 			}
 		/>
