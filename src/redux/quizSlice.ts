@@ -5,14 +5,14 @@ interface QuizState {
 	currentQuiz: Quiz | null;
 	currentQuestionIndex: number;
 	score: number;
-	answerState: AnswerState;
+	answer: {correct: string | null; selected: string | null; state: AnswerState};
 }
 
 const initialState: QuizState = {
 	currentQuiz: null,
 	currentQuestionIndex: 0,
 	score: 0,
-	answerState: 'none',
+	answer: {correct: null, selected: null, state: 'none'},
 };
 
 const quizSlice = createSlice({
@@ -23,31 +23,38 @@ const quizSlice = createSlice({
 			state.currentQuiz = action.payload;
 			state.currentQuestionIndex = 0;
 			state.score = 0;
-			state.answerState = 'none';
+
+			state.answer = {correct: null, selected: null, state: 'none'};
+		},
+		selectAnswer: (state, action: PayloadAction<string>) => {
+			state.answer.selected = action.payload;
 		},
 		submitAnswer: (
 			state,
-			action: PayloadAction<{answer: string; isCorrect: boolean; isSelected: boolean}>,
+			action: PayloadAction<{selected: string | null; correct: string}>,
 		) => {
-			if (action.payload.isCorrect) {
-				state.score += 1;
-				state.answerState = 'correct';
-			} else {
-				state.answerState = 'incorrect';
-			}
+			const {selected, correct} = action.payload;
+
+			state.answer = {
+				correct,
+				selected,
+				state: selected === correct ? 'correct' : 'incorrect',
+			};
+
+			if (selected === correct) state.score += 1;
 		},
 		nextQuestion: (state) => {
 			state.currentQuestionIndex += 1;
-			state.answerState = 'none';
+			state.answer = {correct: null, selected: null, state: 'none'};
 		},
 		resetQuiz: (state) => {
 			state.currentQuiz = null;
 			state.currentQuestionIndex = 0;
 			state.score = 0;
-			state.answerState = 'none';
+			state.answer = {correct: null, selected: null, state: 'none'};
 		},
 	},
 });
 
-export const {startQuiz, submitAnswer, nextQuestion, resetQuiz} = quizSlice.actions;
+export const {startQuiz, selectAnswer, submitAnswer, nextQuestion, resetQuiz} = quizSlice.actions;
 export default quizSlice.reducer;

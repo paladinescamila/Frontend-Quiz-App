@@ -123,10 +123,15 @@
 }
 
 @utility text-preset-6 {
-	font-weight: 500;
 	font-size: 20px;
+	font-weight: 400;
 	line-height: 150%;
 	letter-spacing: 0px;
+	font-style: italic;
+}
+
+* {
+	outline: 1px solid transparent;
 }
 
 body,
@@ -137,7 +142,7 @@ textarea {
 	font-family: 'Rubik', sans-serif;
 }
 
-.custom-shadow {
+@utility custom-shadow {
 	box-shadow: 0px 16px 40px 0 rgba(143, 160, 193, 0.14);
 }
 

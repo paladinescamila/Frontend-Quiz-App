@@ -1,14 +1,15 @@
 import {useMemo} from 'react';
-import {QUIZES_BY_ID} from '../constants/quizes';
+import {QUIZES_BY_SUBJECT} from '../constants/quizes';
 import {useAppDispatch, useAppSelector} from './hooks';
 import {setPage} from './pageSlice';
-import {startQuiz, resetQuiz, submitAnswer, nextQuestion} from './quizSlice';
+import {startQuiz, resetQuiz, selectAnswer, submitAnswer, nextQuestion} from './quizSlice';
 
 export const useHandleState = () => {
 	const dispatch = useAppDispatch();
 
 	const page = useAppSelector((state) => state.page.currentPage);
 	const quizState = useAppSelector((state) => state.quiz);
+	const answer = useAppSelector((state) => state.quiz.answer);
 
 	const question = useMemo(
 		() => quizState.currentQuiz?.questions[quizState.currentQuestionIndex],
@@ -20,8 +21,8 @@ export const useHandleState = () => {
 		[quizState.currentQuiz],
 	);
 
-	const handleStartQuiz = (quizID: QuizID) => {
-		dispatch(startQuiz(QUIZES_BY_ID[quizID]));
+	const handleStartQuiz = (subject: Subject) => {
+		dispatch(startQuiz(QUIZES_BY_SUBJECT[subject]));
 		dispatch(setPage('quiz'));
 	};
 
@@ -30,11 +31,14 @@ export const useHandleState = () => {
 		dispatch(setPage('home'));
 	};
 
-	const handleSubmitAnswer = (answer: string) => {
+	const handleSelectAnswer = (answer: string) => {
+		dispatch(selectAnswer(answer));
+	};
+
+	const handleSubmitAnswer = () => {
 		if (!quizState.currentQuiz || !question) return;
 
-		const isCorrect = answer === question.answer;
-		dispatch(submitAnswer({answer, isCorrect, isSelected: answer !== ''}));
+		dispatch(submitAnswer({selected: answer.selected, correct: question.answer}));
 	};
 
 	const handleNextQuestion = () => {
@@ -52,6 +56,7 @@ export const useHandleState = () => {
 		totalQuestions,
 		handleStartQuiz,
 		handlePlayAgain,
+		handleSelectAnswer,
 		handleSubmitAnswer,
 		handleNextQuestion,
 	};

@@ -346,12 +346,12 @@ export const QUIZES: Quiz[] = [
 	},
 ];
 
-export const QUIZES_BY_ID: Record<QuizID, Quiz> = QUIZES.reduce(
+export const QUIZES_BY_SUBJECT: Record<Subject, Quiz> = QUIZES.reduce(
 	(acc, quiz) => {
 		acc[quiz.id] = quiz;
 		return acc;
 	},
-	{} as Record<QuizID, Quiz>,
+	{} as Record<Subject, Quiz>,
 );
 
-export const QUIZES_IDS = QUIZES.map((quiz) => quiz.id);
+export const SUBJECTS = QUIZES.map((quiz) => quiz.id);

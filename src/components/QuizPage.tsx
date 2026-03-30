@@ -1,71 +1,71 @@
-import {useRef, useEffect} from 'react';
 import {useHandleState} from '../redux/useHandleState';
+import Content from './Content';
+import {OPTIONS_LETTERS} from '../constants/options-letters';
+import Button from './Button';
+import AnswerCard from './AnswerCard';
+import CardList from './CardList';
 
 export function QuizPage() {
 	// State management
 	const {
-		quizState: {currentQuiz, currentQuestionIndex, answerState},
+		quizState: {currentQuestionIndex, answer, currentQuiz},
 		question,
 		totalQuestions,
+		handleSelectAnswer,
 		handleSubmitAnswer,
 		handleNextQuestion,
 	} = useHandleState();
 
 	// Reset form when question changes
-	const formRef = useRef<HTMLFormElement>(null);
 
-	useEffect(() => {
-		formRef.current?.reset();
-	}, [currentQuestionIndex]);
+	const onClickSubmit = () => {
+		if (answer.state === 'none') handleSubmitAnswer();
+		else handleNextQuestion();
+	};
 
 	if (!question) return null;
 
 	return (
-		<main>
-			<header>
-				<h1>{currentQuiz?.title}</h1>
-				<p>
+		<Content subject={currentQuiz?.id}>
+			<section className='flex flex-col gap-6'>
+				<p className='text-preset-5-mobile md:text-preset-6 text-grey-500'>
 					Question {currentQuestionIndex + 1} of {totalQuestions}
 				</p>
-			</header>
+				<h2 className='text-preset-3-mobile md:text-preset-3 text-blue-900'>
+					{question.question}
+				</h2>
+				<div className='h-4 bg-white mt-4 lg:mt-auto rounded-full p-1'>
+					<div
+						className='h-2 bg-purple-600 rounded-full'
+						style={{width: `${(currentQuestionIndex / (totalQuestions - 1)) * 100}%`}}
+					/>
+				</div>
+			</section>
 
 			<section aria-label='Quiz question'>
-				<h2>{question.question}</h2>
-
-				<form
-					ref={formRef}
-					onSubmit={(e) => {
-						e.preventDefault();
-						const formData = new FormData(e.currentTarget);
-						const answer = formData.get('answer');
-
-						if (answerState === 'none') handleSubmitAnswer(answer as string);
-						else if (answerState !== 'unanswered') handleNextQuestion();
-					}}>
+				<form>
 					<fieldset>
-						<legend>Select an answer:</legend>
-
-						<ul>
+						<CardList>
 							{question.options.map((option: string, index: number) => (
 								<li key={`option-${index}`}>
-									<input
-										type='radio'
-										id={`option-${index}`}
-										name='answer'
-										value={option}
-										required
+									<AnswerCard
+										letter={OPTIONS_LETTERS[index]}
+										text={option}
+										answer={answer}
+										isSelected={answer.selected === option}
+										onClick={() => handleSelectAnswer(option)}
 									/>
-									<label htmlFor={`option-${index}`}>{option}</label>
 								</li>
 							))}
-						</ul>
+							<Button
+								text={answer.state === 'none' ? 'Submit Answer' : 'Next Question'}
+								onClick={onClickSubmit}
+								disabled={answer.state === 'none' && !answer.selected}
+							/>
+						</CardList>
 					</fieldset>
-
-					<button type='submit'>
-						{answerState === 'none' ? 'Submit Answer' : 'Next Question'}
-					</button>
 				</form>
 			</section>
-		</main>
+		</Content>
 	);
 }

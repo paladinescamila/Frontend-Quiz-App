@@ -1,8 +1,8 @@
 type Quiz = {
-	id: QuizID;
+	id: Subject;
 	title: string;
 	icon: string;
 	questions: Question[];
 };
 
-type QuizID = 'html' | 'css' | 'javascript' | 'accessibility';
+type Subject = 'html' | 'css' | 'javascript' | 'accessibility';
