@@ -24,7 +24,7 @@ export default function Content({
 				) : null}
 				<ThemeToggle />
 			</section>
-			<section className='grid grid-rows-[auto_1fr] lg:grid-cols-[456px_1fr] gap-10 xl:gap-16 2xl:gap-32'>
+			<section className='grid grid-rows-[auto_1fr] lg:grid-cols-[456px_1fr] gap-10 md:gap-16 xl:gap-32'>
 				{children}
 			</section>
 		</main>
