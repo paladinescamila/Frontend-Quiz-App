@@ -1,6 +1,6 @@
-import MoonLightIcon from '../assets/icon-moon-light.svg';
+// import MoonLightIcon from '../assets/icon-moon-light.svg';
 import MoonDarkIcon from '../assets/icon-moon-dark.svg';
-import SunLightIcon from '../assets/icon-sun-light.svg';
+// import SunLightIcon from '../assets/icon-sun-light.svg';
 import SunDarkIcon from '../assets/icon-sun-dark.svg';
 
 export default function ThemeToggle() {
