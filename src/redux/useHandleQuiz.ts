@@ -7,7 +7,6 @@ import {startQuiz, resetQuiz, selectAnswer, submitAnswer, nextQuestion} from './
 export const useHandleQuiz = () => {
 	const dispatch = useAppDispatch();
 
-	const page = useAppSelector((state) => state.page.currentPage);
 	const quizState = useAppSelector((state) => state.quiz);
 	const answer = useAppSelector((state) => state.quiz.answer);
 
@@ -50,7 +49,6 @@ export const useHandleQuiz = () => {
 	};
 
 	return {
-		page,
 		quizState,
 		question,
 		totalQuestions,
