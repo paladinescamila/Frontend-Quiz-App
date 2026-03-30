@@ -27,7 +27,7 @@ export function HomePage() {
 			<section aria-label='Available quizzes'>
 				<CardList>
 					{SUBJECTS.map((subject) => (
-						<li>
+						<li key={subject}>
 							<Card
 								text={QUIZES_BY_SUBJECT[subject].title}
 								onClick={() => handleStartQuiz(subject)}

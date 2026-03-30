@@ -8,7 +8,6 @@ export default function Content({
 	children,
 }: {
 	subject?: Subject;
-	className?: string;
 	children: React.ReactNode;
 }) {
 	return (

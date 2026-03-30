@@ -24,6 +24,8 @@ export default function ThemeToggle() {
 			/>
 			<button
 				className='w-12 h-7 rounded-full relative bg-purple-600 cursor-pointer'
+				type='button'
+				aria-label='Toggle theme'
 				onClick={toggleTheme}>
 				<span
 					className={`w-5 h-5 rounded-full absolute top-1 left-1 transition-transform ${theme === 'dark' ? 'translate-x-5' : 'translate-x-0'} bg-white`}
