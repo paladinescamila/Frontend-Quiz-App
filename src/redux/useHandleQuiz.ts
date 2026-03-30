@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from './hooks';
 import {setPage} from './pageSlice';
 import {startQuiz, resetQuiz, selectAnswer, submitAnswer, nextQuestion} from './quizSlice';
 
-export const useHandleState = () => {
+export const useHandleQuiz = () => {
 	const dispatch = useAppDispatch();
 
 	const page = useAppSelector((state) => state.page.currentPage);

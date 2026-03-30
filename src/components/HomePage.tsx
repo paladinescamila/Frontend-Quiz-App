@@ -1,4 +1,4 @@
-import {useHandleState} from '../redux/useHandleState';
+import {useHandleQuiz} from '../redux/useHandleQuiz';
 import {QUIZES_BY_SUBJECT, SUBJECTS} from '../constants/quizes';
 import Content from './Content';
 import Card from './Card';
@@ -6,7 +6,7 @@ import CardList from './CardList';
 import SubjectIcon from './SubjectIcon';
 
 export function HomePage() {
-	const {handleStartQuiz} = useHandleState();
+	const {handleStartQuiz} = useHandleQuiz();
 
 	return (
 		<Content>

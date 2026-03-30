@@ -1,10 +1,10 @@
 import {HomePage} from './components/HomePage';
 import {QuizPage} from './components/QuizPage';
 import {ResultsPage} from './components/ResultsPage';
-import {useHandleState} from './redux/useHandleState';
+import {useHandleQuiz} from './redux/useHandleQuiz';
 
 export default function App() {
-	const {page} = useHandleState();
+	const {page} = useHandleQuiz();
 
 	return (
 		<>

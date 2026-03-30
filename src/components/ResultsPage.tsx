@@ -1,10 +1,10 @@
-import {useHandleState} from '../redux/useHandleState';
+import {useHandleQuiz} from '../redux/useHandleQuiz';
 import Button from './Button';
 import Content from './Content';
 import SubjectIcon from './SubjectIcon';
 
 export function ResultsPage() {
-	const {quizState, handlePlayAgain} = useHandleState();
+	const {quizState, handlePlayAgain} = useHandleQuiz();
 
 	if (!quizState.currentQuiz) return null;
 

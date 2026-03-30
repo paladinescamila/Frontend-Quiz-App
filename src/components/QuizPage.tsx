@@ -1,4 +1,4 @@
-import {useHandleState} from '../redux/useHandleState';
+import {useHandleQuiz} from '../redux/useHandleQuiz';
 import Content from './Content';
 import {OPTIONS_LETTERS} from '../constants/options-letters';
 import Button from './Button';
@@ -14,7 +14,7 @@ export function QuizPage() {
 		handleSelectAnswer,
 		handleSubmitAnswer,
 		handleNextQuestion,
-	} = useHandleState();
+	} = useHandleQuiz();
 
 	const onClickSubmit = () => {
 		if (answer.state === 'none') handleSubmitAnswer();

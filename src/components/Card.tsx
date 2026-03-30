@@ -21,7 +21,7 @@ export default function Card({
 				onClick?.();
 			}}>
 			{leftComponent}
-			<h2 className='text-preset-4 text-blue-900 dark:text-white text-start flex-1'>
+			<h2 className='text-preset-4-mobile md:text-preset-4 text-blue-900 dark:text-white text-start flex-1'>
 				{text}
 			</h2>
 			{rightComponent}
