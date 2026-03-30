@@ -6,7 +6,7 @@ This is a solution to the [Frontend Quiz app challenge on Frontend Mentor](https
 
 ## Links
 
-- [Solution]()
+- [Solution](https://www.frontendmentor.io/solutions/frontend-quiz-app-yOq7qU9sOl)
 - [Live Site](https://frontend-quiz-paladinescamila.netlify.app)
 
 ## Built with
