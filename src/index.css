@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
 	--color-white: #ffffff;
 	--color-black: #000000;
@@ -109,10 +111,11 @@
 }
 
 @utility text-preset-5-mobile {
-	font-weight: 500;
+	font-weight: 400;
 	font-size: 14px;
 	line-height: 150%;
 	letter-spacing: 0px;
+	font-style: italic;
 }
 
 @utility text-preset-5-regular {
@@ -142,45 +145,46 @@ textarea {
 	font-family: 'Rubik', sans-serif;
 }
 
-@utility custom-shadow {
+@utility custom-shadow-light {
 	box-shadow: 0px 16px 40px 0 rgba(143, 160, 193, 0.14);
 }
 
-.background-light,
-.background-dark {
+@utility custom-shadow-dark {
+	box-shadow: 0px 16px 40px 0 rgba(49, 62, 81, 0.14);
+}
+
+@utility custom-background-image {
 	background-repeat: no-repeat;
 	background-position: top left;
 	background-size: 100% 100%;
 }
 
-.background-light {
+@utility background-light-desktop {
+	@apply custom-background-image;
 	background-image: url('./assets/pattern-background-desktop-light.svg');
 }
 
-@media (max-width: 1023px) {
-	.background-light {
-		background-image: url('./assets/pattern-background-tablet-light.svg');
-	}
+@utility background-light-tablet {
+	@apply custom-background-image;
+	background-image: url('./assets/pattern-background-tablet-light.svg');
 }
 
-@media (max-width: 767px) {
-	.background-light {
-		background-image: url('./assets/pattern-background-mobile-light.svg');
-	}
+@utility background-light-mobile {
+	@apply custom-background-image;
+	background-image: url('./assets/pattern-background-mobile-light.svg');
 }
 
-.background-dark {
+@utility background-dark-desktop {
+	@apply custom-background-image;
 	background-image: url('./assets/pattern-background-desktop-dark.svg');
 }
 
-@media (max-width: 1023px) {
-	.background-dark {
-		background-image: url('./assets/pattern-background-tablet-dark.svg');
-	}
+@utility background-dark-tablet {
+	@apply custom-background-image;
+	background-image: url('./assets/pattern-background-tablet-dark.svg');
 }
 
-@media (max-width: 767px) {
-	.background-dark {
-		background-image: url('./assets/pattern-background-mobile-dark.svg');
-	}
+@utility background-dark-mobile {
+	@apply custom-background-image;
+	background-image: url('./assets/pattern-background-mobile-dark.svg');
 }

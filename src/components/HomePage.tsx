@@ -12,14 +12,14 @@ export function HomePage() {
 		<Content>
 			<header className='flex flex-col gap-12'>
 				<h1 className='flex flex-col gap-2'>
-					<span className='text-preset-2-light-mobile md:text-preset-2-light text-blue-900'>
+					<span className='text-preset-2-light-mobile md:text-preset-2-light text-blue-900 dark:text-white'>
 						Welcome to the
 					</span>
-					<span className='text-preset-2-mobile md:text-preset-2 text-blue-900'>
+					<span className='text-preset-2-mobile md:text-preset-2 text-blue-900 dark:text-white'>
 						Frontend Quiz!
 					</span>
 				</h1>
-				<p className='text-preset-5-mobile md:text-preset-6 text-grey-500'>
+				<p className='text-preset-5-mobile md:text-preset-6 text-grey-500 dark:text-blue-300'>
 					Pick a subject to get started.
 				</p>
 			</header>

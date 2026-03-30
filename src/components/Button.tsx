@@ -9,10 +9,11 @@ export default function Button({
 }) {
 	return (
 		<button
-			className='cursor-pointer disabled:cursor-not-allowed text-preset-4-mobile md:text-preset-4 text-white p-4 md:p-8 bg-purple-600 disabled:bg-purple-600/50 rounded-3xl w-full'
+			className='cursor-pointer disabled:cursor-not-allowed text-preset-4-mobile md:text-preset-4 text-white p-4 md:p-8 bg-purple-600 rounded-xl md:rounded-3xl w-full relative group'
 			type='button'
 			disabled={disabled}
 			onClick={onClick}>
+			<div className='absolute inset-0 group-disabled:bg-white/50 rounded-xl md:rounded-3xl' />
 			{text}
 		</button>
 	);
