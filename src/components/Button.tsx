@@ -13,7 +13,7 @@ export default function Button({
 			type='button'
 			disabled={disabled}
 			onClick={onClick}>
-			<div className='absolute inset-0 group-disabled:bg-white/50 rounded-xl md:rounded-3xl' />
+			<span className='absolute inset-0 group-disabled:bg-white/50 rounded-xl md:rounded-3xl' />
 			{text}
 		</button>
 	);

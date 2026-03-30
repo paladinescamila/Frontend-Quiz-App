@@ -46,9 +46,9 @@ export default function AnswerCard({
 			}
 			rightComponent={
 				mode === 'correct' || text === answer.correct ? (
-					<img src={CorrectIcon} className='w-10 h-10' />
+					<img src={CorrectIcon} className='w-10 h-10' alt='Correct answer' />
 				) : mode === 'incorrect' && isSelected ? (
-					<img src={ErrorIcon} className='w-10 h-10' />
+					<img src={ErrorIcon} className='w-10 h-10' alt='Incorrect answer' />
 				) : (
 					<div className='w-10 h-10' />
 				)
